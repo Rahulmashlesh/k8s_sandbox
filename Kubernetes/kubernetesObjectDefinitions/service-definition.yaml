@@ -1,0 +1,18 @@
+apiVerison: v1
+kind: Service
+metadata:
+  name:myapp-service
+spec:
+  type: NodePort
+  # Type: - the type of service
+  # there are 3 types of services
+  # 1. ClusterIP - default, used to cluster a set of similar pods which give same servic
+  # 2. NodePort - used to connect a service to the external world
+  # 3. LoadBalancer
+
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 3008
+  selector:
+    app: myapp

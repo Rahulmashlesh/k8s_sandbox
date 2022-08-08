@@ -1,0 +1,29 @@
+## sample pod definition, with explanation of required fields.
+
+#Top level required field
+apiVersion: v1  #depends on the kind, the version is defined
+  # kind        version
+  # Pod         v1
+  # Service     v1
+  # ReplicaSet  apps/v1
+  # Deployment  apps/v1
+
+#Top level required field
+kind: Pod # type of object we are tyring to create.
+
+#Top level required field, data about the object.
+# Is a Dictionary. and take only accepted children. ie name, labels
+metadata:
+  name: myapp # Is a String
+  labels: # is a Dictionary and takes any key value pair.
+    app: myapp
+    type: front-end
+
+#Top level required field, provides addition info for k8s, diff for diff objects, refer doc for specific values
+spec: # this eg. has Pod related spec for a singe pod
+  containers: # in an List/Array, - indicated the first item in the list.
+    - name: nginx-container
+      image: nginx
+  #   can add more than one element in the array,
+  # - name: bussybox
+  #   image: bussybox

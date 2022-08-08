@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet # RS is a process which monitors the pods,to keep replica count satisfied,
+
+metadata:
+  name: my-app-replica-set
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:  # below this every thing is copied from the pod-definition.yaml
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3  # the number of replicas we need.
+
+  # the main diff from replication controller and replica set is selector, what pods fall under it.
+  # mush have label in replica-set
+  selector:
+    matchLabels:
+      type: front-end

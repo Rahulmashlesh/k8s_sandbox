@@ -1,0 +1,13 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: voting-app-pdb
+  labels:
+    name: voting-app-pod
+    app: demo-voting-app
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      name: voting-app-pod
+      app: demo-voting-app

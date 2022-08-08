@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: deployment # is a higher level object than RS, it creates the RS and the pods in the RS
+
+metadata:
+  name: my-app-replica-set
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+
+metadata:
+  name: my-app-replication-controller
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:  # below this every thing is copied from the pod-definition.yaml
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3  # the number of replicas we need.
+
+
+  # selector: # optional in replication-controller.
